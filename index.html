@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>農園管理システム</title>
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+
+  <!-- ===== ヘッダー ===== -->
+  <header>
+    <span class="header-icon">🌾</span>
+    <h1>農園管理システム</h1>
+  </header>
+
+  <!-- ===== タブナビゲーション（JS で動的生成） ===== -->
+  <nav class="tab-nav" id="tab-nav"></nav>
+
+  <!-- ===== メインコンテンツ（JS で動的生成） ===== -->
+  <main id="app-root"></main>
+
+  <!-- ===== 詳細モーダル ===== -->
+  <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="modal-title">詳細</h3>
+        <button class="modal-close" id="modal-close" aria-label="閉じる">&times;</button>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- ===== フッター ===== -->
+  <footer>
+    データはリポジトリ内の <code>data/crop_data.json</code> を直接編集して更新してください。
+  </footer>
+
+  <!-- ===== スクリプト ===== -->
+  <script src="./js/utils.js"></script>
+  <script src="./js/app.js"></script>
+
+</body>
+</html>
