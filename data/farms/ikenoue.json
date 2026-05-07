@@ -1,0 +1,57 @@
+[
+  
+  {
+    "row_number": 11,
+    "crop_name": "（空き）",
+    "planted_date": "",
+    "fertilize_date": [],
+    "last_fertilized": [],
+    "harvest_expected": "",
+    "harvested_date": "",
+    "harvest_guideline": "",
+    "x": 0,
+    "y": 0,
+    "direction": "horizontal",
+    "row_length": 20000,
+    "row_width": 900,
+    "status": "empty",
+    "warning": "",
+    "memo": "竹浸食により、実質利用不能"
+  },
+  {
+    "row_number": 21,
+    "crop_name": "（空き）",
+    "planted_date": "",
+    "fertilize_date": [],
+    "last_fertilized": [],
+    "harvest_expected": "",
+    "harvested_date": "",
+    "harvest_guideline": "",
+    "x": 0,
+    "y": 2000,
+    "direction": "horizontal",
+    "row_length": 20000,
+    "row_width": 900,
+    "status": "empty",
+    "warning": "",
+    "memo": ""
+  },
+  {
+    "row_number": 31,
+    "crop_name": "（空き）",
+    "planted_date": "",
+    "fertilize_date": [],
+    "last_fertilized": [],
+    "harvest_expected": "",
+    "harvested_date": "",
+    "harvest_guideline": "",
+    "x": 0,
+    "y": 4000,
+    "direction": "horizontal",
+    "row_length": 20000,
+    "row_width": 900,
+    "status": "empty",
+    "warning": "",
+    "memo": ""
+  }
+]

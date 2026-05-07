@@ -91,12 +91,244 @@ main {
   border-left: 4px solid #4caf50;
 }
 
-/* ===== 畝グリッド ===== */
-.row-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1rem;
+/* ===== 農場マップ ===== */
+/* 方角コンパス（北固定表示） */
+.compass {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #555;
+  margin-bottom: 0.75rem;
 }
+
+.compass-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #e8f5e9;
+  border: 2px solid #a5d6a7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+/* 農場マップ：座標ベース絶対配置コンテナ */
+.field-map {
+  position: relative; /* 畝の position: absolute の基準 */
+  background: #d4e8c2;
+  border: 2px solid #8bc34a;
+  border-radius: 10px;
+  overflow: auto;
+  margin: 1rem 0;
+  /* width/height は JS で農場の最大座標から動的に設定 */
+}
+
+/* 方角ラベル（上=北、下=南） */
+.field-map .dir-label {
+  text-align: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #558b2f;
+  letter-spacing: 0.1em;
+  position: absolute;
+  width: 100%;
+  top: 4px;
+  left: 0;
+  pointer-events: none;
+}
+
+.field-map .dir-label-bottom {
+  top: auto;
+  bottom: 4px;
+}
+
+/* ===== 畝ストライプ（地図上の帯） ===== */
+.row-strip {
+  position: absolute; /* 農場マップ内で座標配置 */
+  display: flex;
+  align-items: stretch;
+  cursor: pointer;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+  transition: transform 0.15s, box-shadow 0.15s;
+  /* left / top / width / height は JS でインラインスタイルとして付与 */
+}
+
+.row-strip:hover {
+  transform: scale(1.015);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+  z-index: 10;
+}
+
+/* ===== 東西方向（横長の帯）===== */
+.row-strip.horizontal {
+  flex-direction: row;
+  min-height: 48px;
+}
+
+/* ===== 南北方向（縦長のカード）===== */
+.row-strip.vertical {
+  flex-direction: column;
+  min-width: 48px;
+}
+
+.row-strip.vertical .strip-label {
+  width: 100%;
+  height: auto;
+  min-width: unset;
+  min-height: 28px;
+  flex-direction: row;
+  justify-content: center;
+  padding: 4px;
+}
+
+.row-strip.vertical .strip-body {
+  flex: 1;
+  padding: 0.4rem 0.3rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 縦長カードの作物名は縦書きにする */
+.row-strip.vertical .strip-crop {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-size: 0.85rem;
+  white-space: normal;
+  overflow: hidden;
+  text-align: center;
+  flex: 1;
+}
+
+/* 縦長カードではメタ情報を非表示（スペース節約） */
+.row-strip.vertical .strip-meta {
+  display: none;
+}
+
+/* 縦長カードのアラートは縦並び・中央寄せ */
+.row-strip.vertical .strip-alerts {
+  flex-direction: column;
+  align-items: center;
+  padding: 4px 2px;
+}
+
+.row-strip.vertical .strip-alerts span {
+  font-size: 0.62rem;
+  padding: 0.1rem 0.25rem;
+  text-align: center;
+}
+
+/* 左端の番号ラベル帯 */
+.strip-label {
+  width: 36px;
+  min-width: 36px;
+  background: rgba(0,0,0,0.12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.9);
+  gap: 2px;
+  padding: 4px 2px;
+}
+
+/* 畝本体（長さに応じて幅を変える） */
+.strip-body {
+  flex: 1;
+  padding: 0.45rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+}
+
+/* 畝の長さバーによる幅制限（max-width は JS でインラインスタイルとして付与） */
+
+.strip-body .strip-crop {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.strip-body .strip-meta {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.88);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 状態別背景色 */
+.row-strip.growing    { background: linear-gradient(90deg, #388e3c, #66bb6a); }
+.row-strip.harvesting { background: linear-gradient(90deg, #e65100, #ffa726); }
+.row-strip.empty      { background: linear-gradient(90deg, #78909c, #b0bec5); }
+.row-strip.planned    { background: linear-gradient(90deg, #3949ab, #7986cb); }
+.row-strip.finished   { background: linear-gradient(90deg, #757575, #bdbdbd); opacity: 0.7; }
+.row-strip.path       { background: repeating-linear-gradient(45deg, #a1887f, #a1887f 6px, #d7ccc8 6px, #d7ccc8 12px); cursor: default; }
+
+/* アラートアイコン（右端） */
+.strip-alerts {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 3px;
+  padding: 4px 8px 4px 4px;
+  white-space: nowrap;
+}
+
+.strip-alerts span {
+  font-size: 0.68rem;
+  padding: 0.1rem 0.4rem;
+  border-radius: 6px;
+  font-weight: 700;
+  backdrop-filter: blur(2px);
+}
+
+.strip-alerts .harvest-soon  { background: rgba(255,249,196,0.9); color: #f57f17; }
+.strip-alerts .harvest-over  { background: rgba(252,228,236,0.9); color: #c62828; }
+.strip-alerts .fertilize-due { background: rgba(225,245,254,0.9); color: #0277bd; }
+
+/* ===== 凡例 ===== */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.78rem;
+  color: #555;
+}
+
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+.legend-dot.growing    { background: #66bb6a; }
+.legend-dot.harvesting { background: #ffa726; }
+.legend-dot.empty      { background: #b0bec5; }
+.legend-dot.planned    { background: #7986cb; }
+.legend-dot.finished   { background: #bdbdbd; opacity: 0.8; }
+.legend-dot.path       { background: repeating-linear-gradient(45deg, #a1887f, #a1887f 3px, #d7ccc8 3px, #d7ccc8 6px); }
 
 /* ===== 畝カード ===== */
 .row-card {
@@ -327,6 +559,7 @@ footer {
 /* ===== レスポンシブ ===== */
 @media (max-width: 480px) {
   header h1 { font-size: 1.1rem; }
-  .row-grid { grid-template-columns: repeat(2, 1fr); }
+  .row-strip { min-height: 44px; }
+  .strip-body .strip-crop { font-size: 0.85rem; }
   .modal { border-radius: 16px 16px 0 0; max-height: 90vh; }
 }
