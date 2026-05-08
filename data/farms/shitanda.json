@@ -37,7 +37,7 @@
   },
   {
     "row_number": 11,
-    "crop_name": "（空き）",
+    "crop_name": "",
     "planted_date": "",
     "fertilize_date": [],
     "last_fertilized": [],
@@ -73,7 +73,7 @@
   },
   {
     "row_number": 33,
-    "crop_name": "（空き）",
+    "crop_name": "",
     "planted_date": "",
     "fertilize_date": [],
     "last_fertilized": [],
@@ -91,7 +91,7 @@
   },
   {
     "row_number": 43,
-    "crop_name": "（空き）",
+    "crop_name": "",
     "planted_date": "",
     "fertilize_date": [],
     "last_fertilized": [],
@@ -121,7 +121,7 @@
     "direction": "horizontal",
     "row_length": 10000,
     "row_width": 900,
-    "status": "empty",
+    "status": "growing",
     "warning": "",
     "memo": ""
   },
@@ -139,13 +139,13 @@
     "direction": "horizontal",
     "row_length": 10000,
     "row_width": 900,
-    "status": "empty",
+    "status": "growing",
     "warning": "",
     "memo": ""
   },
   {
     "row_number": 73,
-    "crop_name": "（空き）",
+    "crop_name": "",
     "planted_date": "",
     "fertilize_date": [],
     "last_fertilized": [],
@@ -163,7 +163,7 @@
   },
   {
     "row_number": 83,
-    "crop_name": "（空き）",
+    "crop_name": "",
     "planted_date": "",
     "fertilize_date": [],
     "last_fertilized": [],
@@ -181,7 +181,7 @@
   },
   {
     "row_number": 93,
-    "crop_name": "（空き）",
+    "crop_name": "",
     "planted_date": "",
     "fertilize_date": [],
     "last_fertilized": [],
@@ -199,7 +199,7 @@
   },
   {
     "row_number": 103,
-    "crop_name": "（空き）",
+    "crop_name": "",
     "planted_date": "",
     "fertilize_date": [],
     "last_fertilized": [],
@@ -217,7 +217,7 @@
   },
   {
     "row_number": 113,
-    "crop_name": "（空き）",
+    "crop_name": "",
     "planted_date": "",
     "fertilize_date": [],
     "last_fertilized": [],
@@ -235,7 +235,7 @@
   },
   {
     "row_number": 123,
-    "crop_name": "（空き）",
+    "crop_name": "",
     "planted_date": "",
     "fertilize_date": [],
     "last_fertilized": [],
@@ -253,7 +253,7 @@
   },
   {
     "row_number": 133,
-    "crop_name": "（空き）",
+    "crop_name": "",
     "planted_date": "",
     "fertilize_date": [],
     "last_fertilized": [],
@@ -307,7 +307,7 @@
   },
   {
     "row_number": 32,
-    "crop_name": "（空き）",
+    "crop_name": "",
     "planted_date": "",
     "fertilize_date": [],
     "last_fertilized": [],
@@ -361,7 +361,7 @@
   },
   {
     "row_number": 62,
-    "crop_name": "（空き）",
+    "crop_name": "",
     "planted_date": "",
     "fertilize_date": [],
     "last_fertilized": [],
@@ -379,7 +379,7 @@
   },
   {
     "row_number": 72,
-    "crop_name": "（空き）",
+    "crop_name": "",
     "planted_date": "",
     "fertilize_date": [],
     "last_fertilized": [],

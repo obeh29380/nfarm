@@ -273,7 +273,8 @@ main {
 /* 状態別背景色 */
 .row-strip.growing    { background: linear-gradient(90deg, #388e3c, #66bb6a); }
 .row-strip.harvesting { background: linear-gradient(90deg, #e65100, #ffa726); }
-.row-strip.empty      { background: linear-gradient(90deg, #78909c, #b0bec5); }
+/* empty は点線枠＋薄い背景で「空き」を表現 */
+.row-strip.empty      { background: #eceff1; border: 2px dashed #90a4ae; box-shadow: none; color: #546e7a; }
 .row-strip.planned    { background: linear-gradient(90deg, #3949ab, #7986cb); }
 .row-strip.finished   { background: linear-gradient(90deg, #757575, #bdbdbd); opacity: 0.7; }
 .row-strip.path       { background: repeating-linear-gradient(45deg, #a1887f, #a1887f 6px, #d7ccc8 6px, #d7ccc8 12px); cursor: default; }

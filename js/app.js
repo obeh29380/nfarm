@@ -215,28 +215,18 @@ function createRowStrip(row, PX_PER_MM, PADDING) {
   const cropEl = document.createElement('div');
   cropEl.className = 'strip-crop';
   if (row.status === 'path') {
+    // 農道はメモを表示（なければ「農道」）
     cropEl.textContent = row.memo || '農道';
+  } else if (row.status === 'empty') {
+    // 空き畝は作物名が空なら「-」を表示
+    cropEl.textContent = row.crop_name || '-';
   } else {
-    cropEl.textContent = row.crop_name || '（空き）';
+    // 作物名のみ表示（指示書：畝上に表示するのは作物名のみ）
+    cropEl.textContent = row.crop_name || '-';
   }
   body.appendChild(cropEl);
 
-  // horizontal のみサブテキストを表示
-  if (dir === 'horizontal' && row.status !== 'path') {
-    if (row.harvest_expected) {
-      const meta = document.createElement('div');
-      meta.className = 'strip-meta';
-      meta.textContent = `収穫予定：${formatDateJP(row.harvest_expected)}`;
-      body.appendChild(meta);
-    }
-    if (row.row_length) {
-      const lenMeta = document.createElement('div');
-      lenMeta.className = 'strip-meta';
-      // mm → m に変換して表示
-      lenMeta.textContent = `東西 ${(row.row_length / 1000).toFixed(1)}m`;
-      body.appendChild(lenMeta);
-    }
-  }
+  // サブテキストは表示しない（詳細はモーダルで確認）
 
   strip.appendChild(body);
 
