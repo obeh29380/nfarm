@@ -201,11 +201,7 @@ function createRowStrip(row, PX_PER_MM, PADDING) {
   const label = document.createElement('div');
   label.className = 'strip-label';
   // path は「道」と表示、finished は取消線付き番号
-  if (row.status === 'path') {
-    label.innerHTML = `<span>🚶</span>`;
-  } else {
-    label.innerHTML = `<span>畝</span><span>${row.row_number}</span>`;
-  }
+  label.innerHTML = `<span>${row.row_number}</span>`;
   strip.appendChild(label);
 
   // --- 畝本体 ---
